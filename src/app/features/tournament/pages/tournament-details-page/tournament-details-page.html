@@ -1,0 +1,25 @@
+<div>
+    <div>
+        <p>{{ details()?.status }}</p>
+        <h1>{{ details()?.name }}</h1>
+        <p>{{ details()?.location }}</p>
+    </div>
+    <div>
+        <div>
+            <h2>Elo requis:</h2>
+            <p>{{ details()?.eloMin }} - {{ details()?.eloMax }}</p>
+        </div>
+        <div>
+            <h2>Nombres de joueurs:</h2>
+            <p>{{ details()?.players?.length }} / {{ details()?.playerMax }}</p>
+        </div>
+        <div>
+            <h2>Date de fin d'inscription:</h2>
+            <p>{{ details()?.endInscriptionDate | date: 'longDate' }}</p>
+        </div>
+        <div>
+            <h2>Nombre de rounds:</h2>
+            <p>{{details()?.matches![0].roundNumber}}</p>
+        </div>
+    </div>
+</div>

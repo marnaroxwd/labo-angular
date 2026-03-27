@@ -1,0 +1,9 @@
+@if (tournaments().length) {
+    <ul>
+        @for (t of tournaments(); track t.id) {
+            <ul>
+                <app-tournament-card [tournamentInput]="t" />
+            </ul>
+        }
+    </ul>
+}

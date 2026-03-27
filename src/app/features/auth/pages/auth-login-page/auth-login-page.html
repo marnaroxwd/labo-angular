@@ -1,0 +1,45 @@
+<div class="page">
+    <div class="logo">
+        <h2 class="logo-title">Checkmate</h2>
+        <span class="logo-separator"></span>
+    </div>
+
+    <div class="card">
+        <h1 class="title">Connexion</h1>
+        <p class="subtitle">Rejoignez l'élite du jeu d'échecs.</p>
+
+        <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+            <div class="field">
+                <label class="label" for="identifier">Votre indentifiant</label>
+                <input
+                    class="input"
+                    type="identifier"
+                    id="identifier"
+                    formControlName="identifier"
+                    placeholder="Pseudo ou exemple@email.com"
+                />
+            </div>
+
+            <div class="field">
+                <div class="label-row">
+                    <label class="label" for="password">Mot de passe</label>
+                    <a class="forgot" href="#">Mot de passe oublié ?</a>
+                </div>
+                <input
+                    class="input"
+                    type="password"
+                    id="password"
+                    formControlName="password"
+                />
+            </div>
+
+            <button class="btn" type="submit">
+                Se connecter <span class="arrow">›</span>
+            </button>
+        </form>
+
+        <p class="register">
+            Pas encore de compte ? <a routerLink="/auth/register">S'inscrire</a>
+        </p>
+    </div>
+</div>

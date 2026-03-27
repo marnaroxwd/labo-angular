@@ -1,0 +1,85 @@
+<form [formGroup]="formRegister" (ngSubmit)="onSubmitRegister()">
+    <!-- EMAIL -->
+    <div>
+        <label for="email">Email :</label>
+        <input type="email" id="email" formControlName="email" />
+        <app-forms-error-display
+            [control]="email"
+            name="email"
+        ></app-forms-error-display>
+    </div>
+
+    <!-- NICKNAME -->
+    <div>
+        <label for="nickname">Nom d'utilisateur :</label>
+        <input type="text" id="nickname" formControlName="nickname" />
+
+        @if (nickname.touched && nickname.invalid) {
+            @if (nickname.getError('required')) {
+                <p>Le nom d'utilisateur est obligatoire</p>
+            }
+            @if (nickname.getError('minlength')) {
+                <p>Le nom d'utilisateur doit contenir au moins 3 caractères</p>
+            }
+            @if (nickname.getError('maxlength')) {
+                <p>
+                    Le nom d'utilisateur doit contenir au maximum 16 caractères
+                </p>
+            }
+            @if (nickname.getError('pattern')) {
+                <p>
+                    Le nom d'utilisateur ne peut contenir que des lettres,
+                    chiffres, - et _
+                </p>
+            }
+        }
+    </div>
+
+    <!-- PASSWORD -->
+    <div>
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" formControlName="password" />
+        <app-forms-error-display
+            [control]="password"
+            name="password"
+        ></app-forms-error-display>
+    </div>
+
+    <!-- GENDER -->
+    <div>
+        <label for="gender">Genre :</label>
+        <select id="gender" formControlName="gender">
+            <option value="homme">Homme</option>
+            <option value="femme">Femme</option>
+            <option value="autre">Autre</option>
+        </select>
+        <app-forms-error-display
+            [control]="gender"
+            name="genre"
+        ></app-forms-error-display>
+    </div>
+
+    <!-- BIRTHDATE -->
+    <div>
+        <label for="birthdate">Date de naissance :</label>
+        <input type="date" id="birthdate" formControlName="birthDate" />
+        <app-forms-error-display
+            [control]="birthDate"
+            name="date de naissance"
+        ></app-forms-error-display>
+    </div>
+
+    <!-- ELO -->
+    <div>
+        <label for="elo">Elo :</label>
+        <input type="number" id="elo" formControlName="elo" min="0" step="1" />
+        <app-forms-error-display
+            [control]="elo"
+            name="elo"
+        ></app-forms-error-display>
+    </div>
+
+    <button class="btn" [disabled]="formRegister.invalid" type="submit">
+        Submit
+    </button>
+</form>

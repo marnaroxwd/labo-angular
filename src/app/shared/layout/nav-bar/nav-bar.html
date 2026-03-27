@@ -1,0 +1,27 @@
+<nav class="nav">
+    <ul class="nav__list">
+        <li class="nav__el">
+            <h1 class="logo"><a routerLink="/">Checkmate</a></h1>
+        </li>
+    </ul>
+    <ul class="nav__list">
+        <li class="nav__el">Tournaments</li>
+        @if (isConnected()) {
+            <li class="nav__el">Profile</li>
+        }
+        @if (isAdmin()) {
+            <li class="nav__el">Dashboard</li>
+        }
+    </ul>
+    <ul class="nav__list nav__list--btn">
+        @if (!isConnected()) {
+            <li class="nav__el nav__btn">
+                <a class="nav__link btn" routerLink="/auth/login"
+                    >Se connecter</a
+                >
+            </li>
+        } @else {
+            <li><button (click)="onLogoutBtn()">Logout</button></li>
+        }
+    </ul>
+</nav>

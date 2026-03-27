@@ -1,9 +1,9 @@
 import { JwtPayload } from 'jwt-decode';
 
 export interface LoginReponse {
-  accessToken: string;
+    token: string;
 }
 
 export interface JwtDecoded extends JwtPayload {
-  role: string;
+    role: string;
 }

@@ -1,0 +1,97 @@
+/* tournament-card.component.css */
+.tournament__name {
+    font-family: 'Newsreader', sans-serif;
+    font-size: 30px;
+    color: var(--secondary-color);
+    font-weight: 300;
+}
+.tournament__elo {
+    font-size: 12px;
+}
+.tournament-card {
+    background-color: #f5f4f2;
+    border-radius: 12px;
+    padding: 20px 24px 20px 24px;
+    max-width: 480px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8e6e2;
+}
+
+/* ── Header ── */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.status {
+    background-color: var(--primary-color);
+    color: var(--neutral-color);
+    font-size: 12px;
+    font-family: 'Manrope', sans-serif;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+}
+
+/* ── Body ── */
+.card-body {
+    margin-bottom: 20px;
+}
+
+.card-body p {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #4a4a4a;
+    margin: 4px 0;
+    display: flex;
+    gap: 6px;
+}
+
+.card-body p strong {
+    color: #1a1a1a;
+    min-width: 160px;
+}
+
+/* ── Actions ── */
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 13px 32px;
+    transition:
+        background-color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    flex: 1;
+}
+
+.btn.primary:hover {
+    background-color: #6e0025;
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    font-weight: 700;
+    padding: 13px 0;
+}
+
+.btn.secondary:hover {
+    opacity: 0.7;
+}

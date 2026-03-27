@@ -1,0 +1,61 @@
+@if (control().touched && control().invalid) {
+    @if (control().getError('required')) {
+        <p>Le champ {{ name() }} est obligatoire</p>
+    }
+
+    @if (control().getError('email')) {
+        <p>Le champ {{ name() }} doit être une adresse email valide</p>
+    }
+
+    @if (control().getError('minlength')) {
+        <p>
+            Le champ {{ name() }} doit contenir au moins
+            {{ control().getError('minlength').requiredLength }} caractères
+        </p>
+    }
+
+    @if (control().getError('maxlength')) {
+        <p>
+            Le champ {{ name() }} doit contenir au maximum
+            {{ control().getError('maxlength').requiredLength }} caractères
+        </p>
+    }
+
+    @if (control().getError('min')) {
+        <p>
+            Le champ {{ name() }} doit être au moins égal à
+            {{ control().getError('min').min }}
+        </p>
+    }
+
+    @if (control().getError('max')) {
+        <p>
+            Le champ {{ name() }} doit être au maximum égal à
+            {{ control().getError('max').max }}
+        </p>
+    }
+
+    @if (control().getError('notInteger')) {
+        <p>Le champ {{ name() }} doit être un nombre entier</p>
+    }
+
+    @if (control().getError('lowercase')) {
+        <p>Le champ {{ name() }} doit contenir une lettre minuscule</p>
+    }
+
+    @if (control().getError('uppercase')) {
+        <p>Le champ {{ name() }} doit contenir une lettre majuscule</p>
+    }
+
+    @if (control().getError('number')) {
+        <p>Le champ {{ name() }} doit contenir un chiffre</p>
+    }
+
+    @if (control().getError('specialChar')) {
+        <p>Le champ {{ name() }} doit contenir un caractère spécial</p>
+    }
+
+    @if (control().getError('pattern')) {
+        <p>Le champ {{ name() }} contient des caractères non autorisés</p>
+    }
+}

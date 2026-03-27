@@ -1,0 +1,33 @@
+<div class="tournament-card">
+    <div class="card-header">
+        <span class="status">{{ tournamentInput().status }}</span>
+        <p class="tournament__elo">
+            {{ tournamentInput().eloMin }} - {{ tournamentInput().eloMax }} ELO
+        </p>
+    </div>
+
+    <div class="card-body">
+        <h2 class="tournament__name">{{ tournamentInput().name }}</h2>
+        <div>
+            <p>{{ tournamentInput().location }}</p>
+
+            <p>
+                {{ tournamentInput().nbrOfPlayers }} /{{
+                    tournamentInput().playerMax
+                }}
+                joueurs
+            </p>
+        </div>
+
+        <p>
+            Clôture des inscriptions:
+            {{ tournamentInput().endInscriptionDate | date: 'longDate' }}
+        </p>
+    </div>
+
+    <div class="card-actions">
+        <button class="btn primary">S'inscrire</button>
+
+        <a routerLink="/tournament/{{tournamentInput().id}}" class="btn secondary">détails</a>
+    </div>
+</div>
