@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Manrope';
+    src: url('/assets/Manrope-Regular.woff2') format('woff2');
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Newsreader';
+    src: url('/assets/Newsreader.woff2') format('woff2');
+    font-weight: 200 900; /* plage disponible dans la variable font */
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    color: var(--secondary-color);
+}
