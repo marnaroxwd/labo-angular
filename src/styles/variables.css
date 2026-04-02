@@ -1,8 +1,11 @@
 :root {
-    --primary-color: #800020;
-    --secondary-color: #242526;
-    --tertiary-color: #4a707a;
-    --neutral-color: #f5f5f5;
+    --primary-color: oklch(0.38 0.1523 18.62);
+    --secondary-color: oklch(0.35 0.07 240);
+
+    --black-color: oklch(0.2638 0.0024 247.92);
+    --neutral-color: oklch(0.9702 0 0);
+    --disabled-color: oklch(0.45 0.012 240);
+    --finished-color: oklch(0.4 0.05 160); 
     --spacing-small: 8px;
     --spacing-medium: 16px;
     --spacing-large: 24px;

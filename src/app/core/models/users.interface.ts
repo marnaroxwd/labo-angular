@@ -12,7 +12,9 @@ export interface UsersData {
 }
 
 export interface Player {
+  id: number,
   nickname : string,
-  elo: number;
+  birthDate: string,
   gender: Gender,
+  elo: number;
 }

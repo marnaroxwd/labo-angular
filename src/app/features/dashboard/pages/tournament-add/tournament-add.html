@@ -1,0 +1,109 @@
+<form [formGroup]="formCreate" (ngSubmit)="onSubmitCreate()" class="tournament-form">
+
+  <div class="tournament-form__main">
+    
+    <header class="tournament-form__header">
+      <h1 class="tournament-form__title">Créer un Tournoi</h1>
+      <p class="tournament-form__subtitle">
+        Host a new chapter in chess history. Define the parameters of your grand encounter.
+      </p>
+    </header>
+
+    <fieldset class="tournament-form__section">
+      <legend class="tournament-form__section-title">
+        <i class="icon-edit"></i> Informations Générales
+      </legend>
+      
+      <div class="tournament-form__field">
+        <label for="name" class="tournament-form__label">Nom du tournoi</label>
+        <input type="text" id="name" formControlName="name" 
+               class="tournament-form__input" placeholder="ex: Winter Grandmaster Invitational" />
+      </div>
+
+      <div class="tournament-form__field">
+        <label for="location" class="tournament-form__label">Lieu</label>
+        <input type="text" id="location" formControlName="location" 
+               class="tournament-form__input" placeholder="Ville, Club ou Plateforme" />
+      </div>
+    </fieldset>
+
+    <fieldset class="tournament-form__section">
+      <legend class="tournament-form__section-title">
+        <i class="icon-users"></i> Profil des Compétiteurs
+      </legend>
+      
+      <div class="tournament-form__row">
+        <div class="tournament-form__field">
+          <label for="playerMin" class="tournament-form__label">Min Joueurs</label>
+          <input type="number" id="playerMin" formControlName="playerMin" class="tournament-form__input" />
+        </div>
+        <div class="tournament-form__field">
+          <label for="playerMax" class="tournament-form__label">Max Joueurs</label>
+          <input type="number" id="playerMax" formControlName="playerMax" class="tournament-form__input" />
+        </div>
+      </div>
+
+      <div class="tournament-form__group tournament-form__group--gray">
+        <label class="tournament-form__label">Plage de classement Elo</label>
+        <div class="tournament-form__row tournament-form__row--center">
+          <input type="number" formControlName="eloMin" class="tournament-form__input" placeholder="0" />
+          <span class="tournament-form__separator">—</span>
+          <input type="number" formControlName="eloMax" class="tournament-form__input" placeholder="3000" />
+        </div>
+        <small class="tournament-form__help-text">Laissez vide si le tournoi est ouvert à tous</small>
+      </div>
+    </fieldset>
+  </div>
+
+  <aside class="tournament-form__sidebar">
+    <div class="tournament-form__card">
+      <h3 class="tournament-form__card-title">
+        <i class="icon-calendar"></i> Logistique
+      </h3>
+
+      <div class="tournament-form__field">
+        <label for="endInscriptionDate" class="tournament-form__label">Date limite d'inscription</label>
+        <input type="date" id="endInscriptionDate" formControlName="endInscriptionDate" 
+               class="tournament-form__input tournament-form__input--dark" />
+      </div>
+
+      <div class="tournament-form__categories" formGroupName="categories">
+        <label class="tournament-form__label">Catégories</label>
+        
+        <div class="tournament-form__checkbox-group">
+          <input type="checkbox" id="cat-junior" formControlName="junior" class="tournament-form__checkbox" />
+          <label for="cat-junior" class="tournament-form__checkbox-label">Junior (0-18 ans)</label>
+        </div>
+
+        <div class="tournament-form__checkbox-group">
+          <input type="checkbox" id="cat-senior" formControlName="senior" class="tournament-form__checkbox" />
+          <label for="cat-senior" class="tournament-form__checkbox-label">Senior (18-59 ans)</label>
+        </div>
+        <div class="tournament-form__checkbox-group">
+          <input type="checkbox" id="cat-veteran" formControlName="veteran" class="tournament-form__checkbox" />
+          <label for="cat-veteran" class="tournament-form__checkbox-label">
+            Vétérans <span class="tournament-form__age-range">(59+ ans)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="tournament-form__switch-container">
+        <span class="tournament-form__label">Événement féminin</span>
+        <label class="tournament-form__switch">
+          <input type="checkbox" formControlName="isWoman" />
+          <span class="tournament-form__slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="tournament-form__actions">
+      <button type="submit" class="tournament-form__button tournament-form__button--submit">
+        Créer le tournoi <span>&rarr;</span>
+      </button>
+      <button type="reset" class="tournament-form__button tournament-form__button--reset">
+        Réinitialiser la demande
+      </button>
+    </div>
+  </aside>
+
+</form>

@@ -23,17 +23,7 @@ export class AuthRegisterPage {
     private readonly _fb = inject(FormBuilder);
     private readonly _router = inject(Router);
     private readonly _authService = inject(AuthService);
-    /*
-    export interface UsersData {
-        email: string;
-        nickname: string;
-        password: string;
-        gender: Gender;
-        birthDate: string;
-        elo: number;
-        role: UserRole
-    }
-    */
+
     email = new FormControl('', [Validators.required, Validators.email]);
     nickname = new FormControl<string>('', [
         Validators.required,

@@ -1,9 +1,39 @@
-@if (tournaments().length) {
+<div>
+    <div>
+        <label for="tilte-search-input"> Title: </label>
+        <input
+            type="text"
+            id="tilte-search-input"
+            [(ngModel)]="tournamentSearch"
+        />
+        <button (click)="onClickSearch()">Search</button>
+    </div>
+    <div>
+        <label for="eloRange">Elo:</label>
+        <input type="range" id="eloRange" min="0" max="3000" />
+    </div>
+    <div>
+        <label for="category">Catégorie :</label>
+        <select id="category">
+            <option value="Junior">Junior</option>
+            <option value="Senior">Senior</option>
+            <option value="Veteran">Veteran</option>
+        </select>
+    </div>
+</div>
+@if (tournaments()?.data?.length) {
     <ul>
-        @for (t of tournaments(); track t.id) {
+        @for (t of tournaments()?.data; track t.id) {
             <ul>
                 <app-tournament-card [tournamentInput]="t" />
             </ul>
         }
     </ul>
 }
+<ul>
+    @for (page of pages(); track page) {
+        <li>
+            <app-button label="{{ page }}" (clicked)="goToPage(page)" class="btn-primary" />
+        </li>
+    }
+</ul>

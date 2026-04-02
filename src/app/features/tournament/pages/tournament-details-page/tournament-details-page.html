@@ -1,25 +1,122 @@
-<div>
-    <div>
+<article>
+    <header>
         <p>{{ details()?.status }}</p>
         <h1>{{ details()?.name }}</h1>
-        <p>{{ details()?.location }}</p>
-    </div>
+        <address>{{ details()?.location }}</address>
+    </header>
+
+    <dl>
+        <div>
+            <dt>Elo requis</dt>
+            <dd>{{ details()?.eloMin }} – {{ details()?.eloMax }}</dd>
+        </div>
+        <div>
+            <dt>Joueurs inscrits</dt>
+            <dd>
+                {{ details()?.players?.length }} / {{ details()?.playerMax }}
+            </dd>
+        </div>
+        <div>
+            <dt>Fin des inscriptions</dt>
+            <dd>
+                <time>{{
+                    details()?.endInscriptionDate | date: 'longDate'
+                }}</time>
+            </dd>
+        </div>
+        <div>
+            <dt>Rounds</dt>
+            <dd>{{ maxRounds()?.maxRound }}</dd>
+        </div>
+    </dl>
+
+    <footer>
+        @if (!isConnected()) {
+            <app-links label="S'inscrire"
+                extraClasses="btn-primary" link="/auth/login"></app-links>
+            <a class=" btn btn-primary" routerLink="/auth/login">S'inscrire</a>
+        }
+        @if (details()?.canRegister && !details()?.isRegistered) {
+            <app-button
+                label="S'inscrire"
+                extraClasses="btn-primary"
+                (clicked)="onRegister(details()!.id)"
+            ></app-button>
+        }
+        @if (details()?.isRegistered === true && details()?.status === 'en attente de joueurs') {
+            <app-button label="Se désinscrire" extraClasses="btn-secondary" (clicked)="onLeave(details()!.id)"></app-button>
+        }
+        @if (isAdmin() && details()?.status === 'en attente de joueurs') {
+            <app-button  label="Démarrer le tournoi" extraClasses="btn-primary" (clicked)="onStartBtn()"></app-button>
+        }
+    </footer>
+</article>
+
+<section>
     <div>
-        <div>
-            <h2>Elo requis:</h2>
-            <p>{{ details()?.eloMin }} - {{ details()?.eloMax }}</p>
-        </div>
-        <div>
-            <h2>Nombres de joueurs:</h2>
-            <p>{{ details()?.players?.length }} / {{ details()?.playerMax }}</p>
-        </div>
-        <div>
-            <h2>Date de fin d'inscription:</h2>
-            <p>{{ details()?.endInscriptionDate | date: 'longDate' }}</p>
-        </div>
-        <div>
-            <h2>Nombre de rounds:</h2>
-            <p>{{details()?.matches![0].roundNumber}}</p>
-        </div>
+        <h2>Joueurs inscrits</h2>
+        <p>{{ details()?.players?.length }} Participants</p>
     </div>
-</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Pseudo</th>
+                <th>Elo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (p of details()?.players; track $index) {
+                <tr>
+                    <td>{{ p.nickname }}</td>
+                    <td>{{ p.elo }}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <div>
+        <h2>Rencontre de la ronde</h2>
+        <p>Ronde {{ details()?.currentRound }} en cours</p>
+        @if (isAdmin()) {
+            <button (click)="onNextRoundBtn()">Prochain round</button>
+        }
+    </div>
+    @for (m of matches(); track m.id) {
+        <div>
+            <p>Round {{ m.roundNumber }}</p>
+            <p>{{ m.whitePlayer.nickname }} vs {{ m.blackPlayer.nickname }}</p>
+            <p>Résultat : {{ m.result }}</p>
+        </div>
+    }
+</section>
+<section>
+    <div>
+        <h2>Tableau des scores</h2>
+        <p>{{ details()?.players?.length }} Participants</p>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Joueurs</th>
+                <th>V</th>
+                <th>D</th>
+                <th>E</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (s of score(); track $index) {
+                <tr>
+                    <td>{{ s.player.nickname }}</td>
+                    <td>{{ s.victory }}</td>
+                    <td>{{ s.defeat }}</td>
+                    <td>{{ s.draw }}</td>
+                    <td>{{ s.score }}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+<p>AHGAHA</p>

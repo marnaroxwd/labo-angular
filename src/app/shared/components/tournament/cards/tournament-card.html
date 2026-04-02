@@ -1,6 +1,9 @@
 <div class="tournament-card">
     <div class="card-header">
-        <span class="status">{{ tournamentInput().status }}</span>
+        <span class="status" [ngClass]="{'status__primary': tournamentInput().status === 'en attente de joueurs',
+                                        'status__secondary': tournamentInput().status === 'en cours',
+                                        'status__tertiary': tournamentInput().status === 'terminé',
+        }">{{ tournamentInput().status }}</span>
         <p class="tournament__elo">
             {{ tournamentInput().eloMin }} - {{ tournamentInput().eloMax }} ELO
         </p>
@@ -23,11 +26,33 @@
             Clôture des inscriptions:
             {{ tournamentInput().endInscriptionDate | date: 'longDate' }}
         </p>
+
     </div>
 
     <div class="card-actions">
-        <button class="btn primary">S'inscrire</button>
+        @if(!isConnected()){
+            <app-links label="S'inscrire" extraClasses="btn-primary" link="/auth/login" />
+        }
+        @if (tournamentInput().canRegister && !tournamentInput().isRegistered) {
+            <app-button label="S'inscrire" extraClasses="btn-primary" (clicked)="onRegister(tournamentInput().id)" />
+        }
+        @if (!tournamentInput().canRegister && !tournamentInput().isRegistered) {
+            <app-button label="S'inscrire" extraClasses="btn-disabled" (clicked)="onRegister(tournamentInput().id)" />
+        }
+                @if (!tournamentInput().canRegister && !tournamentInput().isRegistered && tournamentInput().status === 'en cours') {
+            <app-links label="Voir les matchs" extraClasses="btn-tertiary" [link]="'/tournament/' + tournamentInput().id"/>
+        }
+        @if (tournamentInput().isRegistered === true && tournamentInput().status === 'en attente de joueurs') {
+            <app-button label="Se désinscrire" extraClasses="btn-secondary" (clicked)="onLeave(tournamentInput().id)" />
+        }
+                @if (tournamentInput().status === 'terminé') {
+                    <app-links label="Voir les résultats" extraClasses="btn-tertiary" [link]="'/tournament/' + tournamentInput().id"/>
+        }
 
-        <a routerLink="/tournament/{{tournamentInput().id}}" class="btn secondary">détails</a>
+        <a
+            routerLink="/tournament/{{ tournamentInput().id }}"
+            class="btn secondary"
+            >détails</a
+        >
     </div>
 </div>

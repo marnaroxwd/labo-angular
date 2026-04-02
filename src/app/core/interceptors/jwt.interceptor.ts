@@ -6,6 +6,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     const authService = inject(AuthService);
 
     const token = authService.authToken();
+    console.log(token)
     if (token) {
         //clone de la requête pour ajouter 'Authorization" dans les headers
         const reqClone = req.clone({
@@ -15,5 +16,6 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
         //retourne la requête modifiée
         return next(reqClone);
     }
+    
     return next(req);
 };

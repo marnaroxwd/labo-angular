@@ -1,0 +1,46 @@
+.btn {
+    font-family: 'Manrope', sans-serif;
+
+    padding: 10px 24px;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--neutral-color);
+}
+.btn-primary:hover {
+    background-color: color-mix(in oklch, var(--primary-color), black 20%);
+    color: var(--neutral-color);
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--neutral-color);
+}
+.btn-secondary:hover {
+    background-color: color-mix(in oklch, var(--secondary-color), black 20%);
+    color: var(--neutral-color);
+    cursor: pointer;
+}
+.btn-tertiary {
+    background-color: var(--finished-color);
+    color: var(--neutral-color);
+}
+.btn-tertiary:hover {
+    background-color: color-mix(in oklch, var(--finished-color), black 20%);
+    color: var(--neutral-color);
+    cursor: pointer;
+}
+
+.btn-disabled {
+    background-color: var(--disabled-color);
+    color: var(--neutral-color);
+}
+.btn-disabled:hover {
+    cursor: not-allowed;
+}
+

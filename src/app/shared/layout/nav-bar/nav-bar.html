@@ -1,16 +1,21 @@
 <nav class="nav">
     <ul class="nav__list">
         <li class="nav__el">
-            <h1 class="logo"><a routerLink="/">Checkmate</a></h1>
+            <h1 class="logo"><app-links label="Checkmate" link="/" /></h1>
         </li>
     </ul>
     <ul class="nav__list">
-        <li class="nav__el">Tournaments</li>
+        <li class="nav__el"><app-links label="Tournois" link="/" /></li>
+
         @if (isConnected()) {
-            <li class="nav__el">Profile</li>
+            <li class="nav__el">
+                <app-links label="Profil" link="/profile" />
+            </li>
         }
         @if (isAdmin()) {
-            <li class="nav__el">Dashboard</li>
+            <li class="nav__el">
+                <app-links label="Dashboard" link="/dashboard" />
+            </li>
         }
     </ul>
     <ul class="nav__list nav__list--btn">
@@ -21,7 +26,8 @@
                 >
             </li>
         } @else {
-            <li><button (click)="onLogoutBtn()">Logout</button></li>
+            <li>
+                <app-button label="Se déconnecter" extraClasses="btn-secondary" (clicked)="onLogoutBtn()"/>
         }
     </ul>
 </nav>

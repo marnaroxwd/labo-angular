@@ -6,13 +6,15 @@ import {
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { jwtInterceptor } from '@core/interceptors/jwt.interceptor';
+import { errorsInterceptor } from '@core/interceptors/errors.interceptor';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideBrowserGlobalErrorListeners(),
         provideRouter(routes),
-        provideHttpClient(),
+        provideHttpClient(withInterceptors([jwtInterceptor, errorsInterceptor])),
         { provide: LOCALE_ID, useValue: 'fr-FR' },
     ],
 };

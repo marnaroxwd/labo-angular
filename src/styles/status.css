@@ -1,0 +1,21 @@
+.status {
+    font-size: 12px;
+    font-family: 'Manrope', sans-serif;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+}
+
+.status__primary{
+    background-color: var(--primary-color);
+    color: var(--neutral-color);
+}
+.status__secondary{
+    background-color: var(--secondary-color);
+    color: var(--neutral-color);
+}
+
+.status__tertiary{
+    background-color: var(--finished-color);
+    color: var(--neutral-color);
+}
