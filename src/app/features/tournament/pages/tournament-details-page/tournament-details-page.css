@@ -1,0 +1,178 @@
+
+
+/* --- HERO SECTION --- */
+.tournament-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 50px 100px  60px 100px;
+    flex-wrap: wrap;
+}
+
+.tournament-hero__header {
+    flex: 1;
+}
+
+.tournament-hero__status {
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.tournament-hero__title {
+    font-size: 3.5rem;
+    font-family: "Newsreader", sans-serif;
+    color: var(--primary-color);
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+}
+
+.tournament-hero__address {
+    font-style: normal;
+    color: var(--disabled-color);
+    font-size: 1rem;
+}
+
+/* --- STATS GRID (<dl>) --- */
+.tournament-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 0;
+}
+
+.tournament-stats__card {
+    background: color-mix(in oklch, var(--disabled-color), transparent 80%);
+    padding: 20px 25px;
+    border-radius: 4px;
+    min-width: 180px;
+}
+
+.tournament-stats__label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--disabled-color);
+    margin-bottom: 5px;
+}
+
+.tournament-stats__value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--black-color);
+}
+
+.tournament-hero__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+/* --- SECTIONS COMMUNES --- */
+.tournament-section {
+    padding: 50px 100px 0px 100px;
+}
+
+.tournament-section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+}
+
+.tournament-section__title {
+    font-family: 'Serif', Georgia, serif;
+    color: var(--primary-color);
+    font-size: 1.75rem;
+    margin: 0;
+}
+
+.tournament-section__subtitle {
+    font-size: 0.85rem;
+    color: var(--disabled-color);
+}
+
+/* --- TABLEAUX --- */
+.tournament-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tournament-table th {
+    background: var(--luxury-color);
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--black-color);
+    letter-spacing: 0.02em;
+}
+
+.tournament-table td {
+    padding: 18px 15px;
+    border-bottom: 1px solid var(--neutral-color);
+    font-size: 0.95rem;
+}
+
+/* --- MATCHES (Rencontres) --- */
+.match-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.match-item {
+    background: #fff;
+    padding: 20px;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 0 4px 4px 0;
+}
+
+.match-item__round {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.match-item__versus {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-item__score {
+    background: var(--bg-gray);
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* --- UTILITAIRES --- */
+.text-primary {
+    color: var(--primary-color);
+}
+
+.btn-admin {
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: opacity 0.2s;
+}
+
+.btn-admin:hover {
+    opacity: 0.9;
+}

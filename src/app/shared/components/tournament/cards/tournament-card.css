@@ -3,20 +3,28 @@
     font-family: 'Newsreader', sans-serif;
     font-size: 30px;
     color: var(--black-color);
-    font-weight: 300;
 }
 .tournament__elo {
     font-size: 12px;
 }
 .tournament-card {
-    background-color: #f5f4f2;
-    border-radius: 12px;
+    background-color: var(--luxury-color);
     padding: 20px 24px 20px 24px;
-    max-width: 480px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e8e6e2;
+    border-left: 4px solid var(--primary-color);
 }
 
+.border-primary{
+    border: 1px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+}
+.border-secondary{
+    border: 1px solid var(--secondary-color);
+    border-left: 4px solid var(--secondary-color);
+}
+.border-tertiary{
+    border: 1px solid var(--finished-color);
+    border-left: 4px solid var(--finished-color);
+}
 /* ── Header ── */
 .card-header {
     display: flex;
@@ -29,27 +37,24 @@
 
 /* ── Body ── */
 .card-body {
+    font-family: 'Manrope', sans-serif;
     margin-bottom: 20px;
 }
 
 .card-body p {
-    font-family: 'Arial', sans-serif;
     font-size: 14px;
-    color: #4a4a4a;
     margin: 4px 0;
     display: flex;
     gap: 6px;
 }
 
-.card-body p strong {
-    color: #1a1a1a;
-    min-width: 160px;
-}
+
 
 /* ── Actions ── */
 .card-actions {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
 }
 

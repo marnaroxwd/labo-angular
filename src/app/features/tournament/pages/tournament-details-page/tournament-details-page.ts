@@ -42,30 +42,29 @@ export class TournamentDetailsPage {
         });
     }
     async onRefresh() {
-        // await sleep(2000)
-        try {
-            this.details.set(
-                await this._tournamentService.details(this.tournamentId),
-            );
-            if (this.matches.length) {
-                this.matches.set(
-                    await this._tournamentService.matches(this.tournamentId),
-                );
-            }
+    try {
+        
+        const detailsData = await this._tournamentService.details(this.tournamentId);
+        this.details.set(detailsData);
 
-            this.score.set(
-                await this._tournamentService.score(this.tournamentId),
-            );
-            if (this.maxRounds) {
-                this.maxRounds.set(
-                    await this._tournamentService.maxRounds(this.tournamentId),
-                );
-            }
-        } catch (err) {
+        
+        const matchesData = await this._tournamentService.matches(this.tournamentId);
+        this.matches.set(matchesData);
+
+       
+        this.score.set(
+            await this._tournamentService.score(this.tournamentId),
+        );
+
+        this.maxRounds.set(
+            await this._tournamentService.maxRounds(this.tournamentId),
+        );
+        
+    } catch (err) {
             const e = err as Error;
             console.log(e);
         }
-    }
+}
 
     async onNextRoundBtn() {
         await this._tournamentService.nextRound(this.tournamentId);

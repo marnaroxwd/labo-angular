@@ -1,0 +1,72 @@
+.tournament__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    list-style: none;
+    padding: 0 100px;
+    
+    justify-items: center; 
+    
+    align-items: center; 
+}
+.search__bar{
+    padding: 0 100px;
+    display: flex;
+    
+}
+/* Cibler l'élément li ou le composant directement */
+.tournament__list li {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+app-tournament-card {
+    width: 100%;
+}
+.filter__bar {
+    display: flex;
+    align-items: flex-end; 
+    gap: 20px;
+    padding: 25px;
+    margin: 0 100px;
+    border: 1px solid oklch(from var(--primary-color) l c h / 0.5); 
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+
+.filter__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1; /* Permet aux inputs de prendre l'espace disponible équitablement */
+}
+
+.filter__group label {
+    font-size: 12px;
+    
+    text-transform: uppercase;
+}
+
+.filter__group input, 
+.filter__group select {
+    padding: 10px 15px;
+    border: 1px solid #f0dada;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #444;
+    outline: none;
+    width: 100%;
+}
+
+.filter__actions {
+    flex: 0 0 auto; /* Le bouton ne grandit pas */
+}
+
+
+/* Optionnel : Ajustement pour mobile (1 colonne si l'écran est petit) */
+@media (max-width: 768px) {
+    .tournament__list {
+        grid-template-columns: 1fr;
+    }
+}

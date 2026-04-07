@@ -1,0 +1,66 @@
+/* Block */
+.arena-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem 0;
+  border: 1px solid var(--secondary-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Elements */
+.arena-table__head {
+  background-color: #f8fafc;
+}
+
+.arena-table__cell {
+  padding: 1rem;
+  vertical-align: middle;
+  color: var(--black-color);
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Element Modifiers */
+.arena-table__cell--head {
+  text-align: left;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--black-color);
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+.arena-table__cell--center {
+  text-align: center;
+}
+
+.arena-table__cell--actions {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Row Modifiers */
+.arena-table__row--striped:nth-child(even) {
+  background-color: color-mix(in oklch, var(--primary-color), transparent 90%);
+}
+
+.arena-table__row:hover {
+  background-color: color-mix(in oklch, var(--secondary-color), transparent 90%);
+  transition: background-color 0.2s ease;
+}
+
+/* Actions List Element */
+.arena-table__actions-list {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.arena-table__action-item {
+  display: flex;
+}

@@ -1,8 +1,5 @@
 .btn {
-    font-family: 'Manrope', sans-serif;
-
     padding: 10px 24px;
-
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
@@ -12,6 +9,15 @@
     color: var(--neutral-color);
 }
 .btn-primary:hover {
+    background-color: color-mix(in oklch, var(--primary-color), black 20%);
+    color: var(--neutral-color);
+    cursor: pointer;
+}
+.btn-border {
+    border:solid 1px  var(--primary-color);
+    color: var(--primary-color);
+}
+.btn-border:hover {
     background-color: color-mix(in oklch, var(--primary-color), black 20%);
     color: var(--neutral-color);
     cursor: pointer;

@@ -34,13 +34,21 @@ export class TournamentService {
     });
     async listing(filters?: {
         name?: string;
+        status?: string;
+        category?: string;
         offset?: number;
     }): Promise<PaginatedResponse<Tournament>> {
-        console.log('filters reçus:', filters);
-        let params = new HttpParams().set('limit', 20).set('offset', filters?.offset ?? 0);
-        console.log('params envoyés:', params.toString());
+        let params = new HttpParams()
+            .set('limit', 20)
+            .set('offset', filters?.offset ?? 0);
         if (filters?.name) {
             params = params.set('name', filters.name);
+        }
+        if (filters?.status) {
+            params = params.set('status', filters.status);
+        }
+        if (filters?.category) {
+            params = params.set('category', filters.category);
         }
 
         const response = await firstValueFrom(
@@ -49,7 +57,7 @@ export class TournamentService {
                 { params },
             ),
         );
-        console.log(response);
+        console.dir(response);
         return response;
     }
     async create(tournamentData: CreateTournament): Promise<void> {

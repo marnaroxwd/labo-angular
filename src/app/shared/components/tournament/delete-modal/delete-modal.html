@@ -1,0 +1,25 @@
+<div class="modal-overlay" (click)="onCancel">
+  <div class="delete-card" (click)="$event.stopPropagation()">
+    <div class="delete-card__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="oklch(0.38 0.1523 18.62)" stroke-width="2">
+            <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+        </svg>
+    </div>
+    
+    <div class="delete-card__content">
+      <h2 class="delete-card__title">Supprimer le tournoi ?</h2>
+      <p class="delete-card__text">
+        Êtes-vous sûr de vouloir supprimer <span class="delete-card__tournament">{{ itemName() }}</span> ? 
+        Cette action effacera toutes les données liées aux matchs et aux scores.
+      </p>
+    </div>
+
+
+    <div class="delete-card__actions">
+      <app-button class="btn-border" (clicked)="cancel()" label="Annuler" />
+      <app-button class="btn-primary" (clicked)="confirm()" label="Supprimer" />
+    </div>
+  </div>
+</div>

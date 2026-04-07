@@ -7,7 +7,7 @@ import { Button } from "../../components/button/button";
 
 @Component({
     selector: 'app-nav-bar',
-    imports: [RouterLink, Links, Button],
+    imports: [ Links, Button],
     templateUrl: './nav-bar.html',
     styleUrl: './nav-bar.css',
 })

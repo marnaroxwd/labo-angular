@@ -1,34 +1,48 @@
-<div>
-    <div>
-        <label for="tilte-search-input"> Title: </label>
-        <input
-            type="text"
-            id="tilte-search-input"
-            [(ngModel)]="tournamentSearch"
-        />
-        <button (click)="onClickSearch()">Search</button>
+<div class="filter__bar">
+    <div class="filter__group">
+        <label for="title-search">NOM DU TOURNOI</label>
+        <div class="input-wrapper">
+            <i class="icon-search"></i> <input 
+                type="text" 
+                id="title-search" 
+                placeholder="Rechercher..." 
+                [(ngModel)]="tournamentSearch"
+            />
+        </div>
     </div>
-    <div>
-        <label for="eloRange">Elo:</label>
-        <input type="range" id="eloRange" min="0" max="3000" />
+
+    <div class="filter__group">
+        <label for="status">STATUT</label>
+        <select id="status" [(ngModel)]="tournamentStatus">
+            <option value="en attente de joueurs">Inscriptions ouvertes</option>
+            <option value="en cours">En cours</option>
+            <option value="terminé">Terminé</option>
+        </select>
     </div>
-    <div>
-        <label for="category">Catégorie :</label>
-        <select id="category">
+
+    <div class="filter__group">
+        <label for="category">CATÉGORIE</label>
+        <select id="category" [(ngModel)]="tournamentCategory">
+            <option>Toutes catégories</option>
             <option value="Junior">Junior</option>
             <option value="Senior">Senior</option>
             <option value="Veteran">Veteran</option>
         </select>
     </div>
+
+    <div class="filter__actions">
+        <app-button extraClasses="btn-primary" label="Filtrer" (clicked)="onClickSearch()"/>
+    </div>
 </div>
 @if (tournaments()?.data?.length) {
-    <ul>
+<ul class="tournament__list">
         @for (t of tournaments()?.data; track t.id) {
-            <ul>
+            <li>
+
                 <app-tournament-card [tournamentInput]="t" />
-            </ul>
-        }
-    </ul>
+            </li>
+            }
+        </ul>
 }
 <ul>
     @for (page of pages(); track page) {

@@ -1,0 +1,41 @@
+<table class="arena-table">
+    <thead class="arena-table__head">
+        <tr class="arena-table__row arena-table__row--header">
+            @for (col of columns(); track col.key) {
+                <th class="arena-table__cell arena-table__cell--head">
+                    {{ col.label }}
+                </th>
+            }
+            <th class="arena-table__cell arena-table__cell--head arena-table__cell--center">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody class="arena-table__body">
+        @for (row of data(); track row['id']) {
+            <tr class="arena-table__row arena-table__row--striped">
+                @for (col of columns(); track col.key) {
+                    <td class="arena-table__cell">{{ row[col.key] }}</td>
+                }
+                <td class="arena-table__cell arena-table__cell--actions">
+                    <ul class="arena-table__actions-list">
+                        <li class="arena-table__action-item">
+                            <app-button
+                                label="edit"
+                                extraClasses="btn-tertiary"
+                                (clicked)="onEdit(row)" 
+                            />
+                        </li>
+                        <li class="arena-table__action-item">
+                            <app-button
+                                label="delete"
+                                extraClasses="btn-primary"
+                                (clicked)="onDelete(row)"
+                            />
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,63 +1,55 @@
-<article>
-    <header>
-        <p>{{ details()?.status }}</p>
-        <h1>{{ details()?.name }}</h1>
-        <address>{{ details()?.location }}</address>
+<article class="tournament-hero">
+    <header class="tournament-hero__header">
+        <p class="tournament-hero__status">{{ details()?.status }}</p>
+        <h1 class="tournament-hero__title">{{ details()?.name }}</h1>
+        <address class="tournament-hero__address">{{ details()?.location }}</address>
     </header>
 
-    <dl>
-        <div>
-            <dt>Elo requis</dt>
-            <dd>{{ details()?.eloMin }} – {{ details()?.eloMax }}</dd>
+    <dl class="tournament-stats">
+        <div class="tournament-stats__card">
+            <dt class="tournament-stats__label">Elo requis</dt>
+            <dd class="tournament-stats__value">{{ details()?.eloMin }} – {{ details()?.eloMax }}</dd>
         </div>
-        <div>
-            <dt>Joueurs inscrits</dt>
-            <dd>
+        <div class="tournament-stats__card">
+            <dt class="tournament-stats__label">Joueurs inscrits</dt>
+            <dd class="tournament-stats__value">
                 {{ details()?.players?.length }} / {{ details()?.playerMax }}
             </dd>
         </div>
-        <div>
-            <dt>Fin des inscriptions</dt>
-            <dd>
-                <time>{{
-                    details()?.endInscriptionDate | date: 'longDate'
-                }}</time>
+        <div class="tournament-stats__card">
+            <dt class="tournament-stats__label">Fin des inscriptions</dt>
+            <dd class="tournament-stats__value">
+                <time>{{ details()?.endInscriptionDate | date: 'longDate' }}</time>
             </dd>
         </div>
-        <div>
-            <dt>Rounds</dt>
-            <dd>{{ maxRounds()?.maxRound }}</dd>
+        <div class="tournament-stats__card">
+            <dt class="tournament-stats__label">Rounds</dt>
+            <dd class="tournament-stats__value">{{ maxRounds()?.maxRound }}</dd>
         </div>
     </dl>
 
-    <footer>
+    <footer class="tournament-hero__actions">
         @if (!isConnected()) {
-            <app-links label="S'inscrire"
-                extraClasses="btn-primary" link="/auth/login"></app-links>
-            <a class=" btn btn-primary" routerLink="/auth/login">S'inscrire</a>
+            <app-links label="S'inscrire" extraClasses="btn-primary" link="/auth/login"></app-links>
         }
-        @if (details()?.canRegister && !details()?.isRegistered) {
-            <app-button
-                label="S'inscrire"
-                extraClasses="btn-primary"
-                (clicked)="onRegister(details()!.id)"
-            ></app-button>
+        @if (details()?.canRegister && !details()?.isRegistered && isConnected()) {
+            <app-button label="S'inscrire" extraClasses="btn-primary" (clicked)="onRegister(details()!.id)"></app-button>
         }
         @if (details()?.isRegistered === true && details()?.status === 'en attente de joueurs') {
             <app-button label="Se désinscrire" extraClasses="btn-secondary" (clicked)="onLeave(details()!.id)"></app-button>
         }
         @if (isAdmin() && details()?.status === 'en attente de joueurs') {
-            <app-button  label="Démarrer le tournoi" extraClasses="btn-primary" (clicked)="onStartBtn()"></app-button>
+            <app-button label="Démarrer le tournoi" extraClasses="btn-primary" (clicked)="onStartBtn()"></app-button>
         }
     </footer>
 </article>
 
-<section>
-    <div>
-        <h2>Joueurs inscrits</h2>
-        <p>{{ details()?.players?.length }} Participants</p>
+<section class="tournament-section">
+    <div class="tournament-section__header">
+        <h2 class="tournament-section__title">Joueurs inscrits</h2>
+        <p class="tournament-section__subtitle">{{ details()?.players?.length }} Participants</p>
     </div>
-    <table>
+    <table class="tournament-table">
         <thead>
             <tr>
                 <th>Pseudo</th>
@@ -68,35 +60,41 @@
             @for (p of details()?.players; track $index) {
                 <tr>
                     <td>{{ p.nickname }}</td>
-                    <td>{{ p.elo }}</td>
+                    <td class="text-primary">{{ p.elo }}</td>
                 </tr>
             }
         </tbody>
     </table>
 </section>
 
-<section>
-    <div>
-        <h2>Rencontre de la ronde</h2>
-        <p>Ronde {{ details()?.currentRound }} en cours</p>
+<section class="tournament-section">
+    <div class="tournament-section__header">
+        <h2 class="tournament-section__title">Rencontre de la ronde</h2>
+        <p class="tournament-section__subtitle">Ronde {{ details()?.currentRound }} en cours</p>
         @if (isAdmin()) {
-            <button (click)="onNextRoundBtn()">Prochain round</button>
+            <button class="btn-admin" (click)="onNextRoundBtn()">Prochain round</button>
         }
     </div>
-    @for (m of matches(); track m.id) {
-        <div>
-            <p>Round {{ m.roundNumber }}</p>
-            <p>{{ m.whitePlayer.nickname }} vs {{ m.blackPlayer.nickname }}</p>
-            <p>Résultat : {{ m.result }}</p>
-        </div>
-    }
-</section>
-<section>
-    <div>
-        <h2>Tableau des scores</h2>
-        <p>{{ details()?.players?.length }} Participants</p>
+    <div class="match-list">
+        @for (m of matches(); track m.id) {
+            <div class="match-item">
+                <p class="match-item__round">Round {{ m.roundNumber }}</p>
+                <div class="match-item__versus">
+                    <span>{{ m.whitePlayer.nickname }}</span>
+                    <span class="match-item__score">{{ m.result || 'Live' }}</span>
+                    <span>{{ m.blackPlayer.nickname }}</span>
+                </div>
+            </div>
+        }
     </div>
-    <table>
+</section>
+
+<section class="tournament-section">
+    <div class="tournament-section__header">
+        <h2 class="tournament-section__title">Tableau des scores</h2>
+        <p class="tournament-section__subtitle">{{ details()?.players?.length }} Participants</p>
+    </div>
+    <table class="tournament-table">
         <thead>
             <tr>
                 <th>Joueurs</th>
@@ -109,14 +107,13 @@
         <tbody>
             @for (s of score(); track $index) {
                 <tr>
-                    <td>{{ s.player.nickname }}</td>
+                    <td class="fw-bold">{{ s.player.nickname }}</td>
                     <td>{{ s.victory }}</td>
                     <td>{{ s.defeat }}</td>
                     <td>{{ s.draw }}</td>
-                    <td>{{ s.score }}</td>
+                    <td class="text-primary">{{ s.score }}</td>
                 </tr>
             }
         </tbody>
     </table>
 </section>
-<p>AHGAHA</p>

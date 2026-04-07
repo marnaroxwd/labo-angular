@@ -1,7 +1,7 @@
 <nav class="nav">
     <ul class="nav__list">
         <li class="nav__el">
-            <h1 class="logo"><app-links label="Checkmate" link="/" /></h1>
+            <h1 class="logo"><app-links extraClasses="logo" label="Checkmate" link="/" /></h1>
         </li>
     </ul>
     <ul class="nav__list">
@@ -21,13 +21,20 @@
     <ul class="nav__list nav__list--btn">
         @if (!isConnected()) {
             <li class="nav__el nav__btn">
-                <a class="nav__link btn" routerLink="/auth/login"
-                    >Se connecter</a
-                >
+                <app-links
+                    label="Se connecter"
+                    extraClasses="btn-primary"
+                    link="/auth/login"
+                />
             </li>
         } @else {
             <li>
-                <app-button label="Se déconnecter" extraClasses="btn-secondary" (clicked)="onLogoutBtn()"/>
+                <app-button
+                    label="Se déconnecter"
+                    extraClasses="btn-secondary"
+                    (clicked)="onLogoutBtn()"
+                />
+            </li>
         }
     </ul>
 </nav>

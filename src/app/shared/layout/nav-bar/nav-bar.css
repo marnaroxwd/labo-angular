@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 36px;
+    padding: 24px 100px;
     & .nav__list {
         display: flex;
         justify-content: space-between;
@@ -17,8 +17,9 @@
 
 .logo {
     color: var(--primary-color);
-    font-family: 'Newsreader', sans-serif;
+    font-family: 'Newsreader', sans-serif !important;
     font-size: 36px;
+    padding: 0 !important;
     font-style: italic;
     font-weight: 200;
 }

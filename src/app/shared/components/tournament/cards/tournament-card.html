@@ -1,4 +1,7 @@
-<div class="tournament-card">
+<div class="tournament-card" [ngClass]="{'border-primary': tournamentInput().status === 'en attente de joueurs',
+                                        'border-secondary': tournamentInput().status === 'en cours',
+                                        'border-tertiary': tournamentInput().status === 'terminé',
+        }">
     <div class="card-header">
         <span class="status" [ngClass]="{'status__primary': tournamentInput().status === 'en attente de joueurs',
                                         'status__secondary': tournamentInput().status === 'en cours',
@@ -33,19 +36,19 @@
         @if(!isConnected()){
             <app-links label="S'inscrire" extraClasses="btn-primary" link="/auth/login" />
         }
-        @if (tournamentInput().canRegister && !tournamentInput().isRegistered) {
+        @if (tournamentInput().canRegister && !tournamentInput().isRegistered && isConnected()) {
             <app-button label="S'inscrire" extraClasses="btn-primary" (clicked)="onRegister(tournamentInput().id)" />
         }
-        @if (!tournamentInput().canRegister && !tournamentInput().isRegistered) {
+        @if (!tournamentInput().canRegister && !tournamentInput().isRegistered && isConnected()) {
             <app-button label="S'inscrire" extraClasses="btn-disabled" (clicked)="onRegister(tournamentInput().id)" />
         }
-                @if (!tournamentInput().canRegister && !tournamentInput().isRegistered && tournamentInput().status === 'en cours') {
+                @if (!tournamentInput().canRegister && tournamentInput().status === 'en cours') {
             <app-links label="Voir les matchs" extraClasses="btn-tertiary" [link]="'/tournament/' + tournamentInput().id"/>
         }
-        @if (tournamentInput().isRegistered === true && tournamentInput().status === 'en attente de joueurs') {
+        @if (tournamentInput().isRegistered === true && tournamentInput().status === 'en attente de joueurs' && isConnected()) {
             <app-button label="Se désinscrire" extraClasses="btn-secondary" (clicked)="onLeave(tournamentInput().id)" />
         }
-                @if (tournamentInput().status === 'terminé') {
+                @if (tournamentInput().status === 'terminé' ) {
                     <app-links label="Voir les résultats" extraClasses="btn-tertiary" [link]="'/tournament/' + tournamentInput().id"/>
         }
 

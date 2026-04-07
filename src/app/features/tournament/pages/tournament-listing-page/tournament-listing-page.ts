@@ -19,6 +19,8 @@ export class TournamentListingPage {
     private readonly _activatedRoute = inject(ActivatedRoute);
     tournaments = signal<null | PaginatedResponse<Tournament>>(null);
     tournamentSearch = '';
+    tournamentStatus = "";
+    tournamentCategory = "";
 
     pages = computed(() => {
         const response = this.tournaments();
@@ -30,33 +32,37 @@ export class TournamentListingPage {
     });
     ngOnInit(): void {
         this._activatedRoute.queryParams.subscribe({
-            next: async (queryParam) => {
-                this.tournamentSearch = queryParam['tournamentName'];
-                console.log('queryParams:', queryParam); // ← voir ce qu'on reçoit
-                console.log('offset brut:', queryParam['offset']);
-                const offset = Number(queryParam['offset'] ?? 0);
-                console.log('offset final:', offset);
-                //PROMESSE
+            next: async (params) => {
+                this.tournamentSearch = params['tournamentName'] || '';
+                this.tournamentStatus = params['status'] || '';
+                 this.tournamentCategory = params['category'] || '';
+                const offset = Number(params['offset'] ?? 0);
+
                 try {
-                    this.tournaments.set(
-                        await this._tournamentService.listing({
-                            name: this.tournamentSearch,
-                            offset: offset,
-                        }),
-                    );
+                    const response = await this._tournamentService.listing({
+                        name: this.tournamentSearch,
+                        status: this.tournamentStatus,
+                        category: this.tournamentCategory,
+                        offset: offset,
+                    });
+                    this.tournaments.set(response);
                 } catch (err) {
-                    const e = err as Error;
-                    console.log(e);
+                    console.error("Erreur lors du filtrage", err);
                 }
             },
         });
     }
 
-    onClickSearch() {
-        this._router.navigate(['/'], {
+onClickSearch() {
+        this._router.navigate([], { // [] ou ['/'] selon ta route
+            relativeTo: this._activatedRoute,
             queryParams: {
-                tournamentName: this.tournamentSearch,
+                tournamentName: this.tournamentSearch || null, // null retire le param de l'URL s'il est vide
+                status: this.tournamentStatus || null,
+                category: this.tournamentCategory || null,
+                offset: 0 
             },
+            queryParamsHandling: 'merge', // Garde les autres paramètres si nécessaire
         });
     }
     goToPage(page: number): void {
