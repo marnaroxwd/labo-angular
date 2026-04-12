@@ -15,15 +15,25 @@
         @for (row of data(); track row['id']) {
             <tr class="arena-table__row arena-table__row--striped">
                 @for (col of columns(); track col.key) {
-                    <td class="arena-table__cell">{{ row[col.key] }}</td>
+                    <td class="arena-table__cell">
+                        @if (col.isLink) {
+                            <app-links
+                                [label]="row[col.key]"
+                                [link]="'/tournament/' + row['id']"
+                            />
+                        } @else {
+                            {{ row[col.key] }}
+                        }
+                    </td>
                 }
+
                 <td class="arena-table__cell arena-table__cell--actions">
                     <ul class="arena-table__actions-list">
                         <li class="arena-table__action-item">
                             <app-button
                                 label="edit"
                                 extraClasses="btn-tertiary"
-                                (clicked)="onEdit(row)" 
+                                (clicked)="onEdit(row)"
                             />
                         </li>
                         <li class="arena-table__action-item">

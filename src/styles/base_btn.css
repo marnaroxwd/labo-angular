@@ -3,6 +3,8 @@
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
+    min-width: 40px;
+    min-height: 40px;
 }
 .btn-primary {
     background-color: var(--primary-color);
@@ -13,11 +15,11 @@
     color: var(--neutral-color);
     cursor: pointer;
 }
-.btn-border {
-    border:solid 1px  var(--primary-color);
+.btn-outlined {
+    border: solid 1px var(--primary-color);
     color: var(--primary-color);
 }
-.btn-border:hover {
+.btn-outlined:hover {
     background-color: color-mix(in oklch, var(--primary-color), black 20%);
     color: var(--neutral-color);
     cursor: pointer;
@@ -49,4 +51,9 @@
 .btn-disabled:hover {
     cursor: not-allowed;
 }
-
+.btn__icon {
+    /* On définit une taille fixe mais cohérente avec le texte */
+    width: 1.2rem; 
+    height: 1.2rem;
+    object-fit: contain;
+}

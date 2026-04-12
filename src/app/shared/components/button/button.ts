@@ -9,7 +9,9 @@ import { Component, input, output } from '@angular/core';
 export class Button {
     label = input('');
     extraClasses = input('');
-    
+    icon = input<string | null>(null);
+    disabled= input('')
+    type = input('')
     clicked = output<void>();
     onAction(): void {
         this.clicked.emit();

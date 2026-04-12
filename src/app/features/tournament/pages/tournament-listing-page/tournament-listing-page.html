@@ -2,10 +2,12 @@
     <div class="filter__group">
         <label for="title-search">NOM DU TOURNOI</label>
         <div class="input-wrapper">
-            <i class="icon-search"></i> <input 
-                type="text" 
-                id="title-search" 
-                placeholder="Rechercher..." 
+            <i class="icon-search"></i>
+            <input
+                type="text"
+                id="title-search"
+                placeholder="Rechercher..."
+                (keydown.enter)="onClickSearch()"
                 [(ngModel)]="tournamentSearch"
             />
         </div>
@@ -29,25 +31,46 @@
             <option value="Veteran">Veteran</option>
         </select>
     </div>
+    <div class="filter__group">
+        <input
+            type="checkbox"
+            name="Tournoi féminin"
+            id="isWoman"
+            [(ngModel)]="isWoman"
+        />
+    </div>
 
     <div class="filter__actions">
-        <app-button extraClasses="btn-primary" label="Filtrer" (clicked)="onClickSearch()"/>
+        <app-button
+            extraClasses="btn-primary"
+            label="Filtrer"
+            (clicked)="onClickSearch()"
+        />
+        <app-button
+            extraClasses="btn-outlined btn__reset"
+            label="reset"
+            (clicked)="onResetFilter()"
+            icon="/images/reset.svg"
+        />
     </div>
 </div>
 @if (tournaments()?.data?.length) {
-<ul class="tournament__list">
+    <ul class="tournament__list">
         @for (t of tournaments()?.data; track t.id) {
             <li>
-
                 <app-tournament-card [tournamentInput]="t" />
             </li>
-            }
-        </ul>
+        }
+    </ul>
 }
 <ul>
     @for (page of pages(); track page) {
         <li>
-            <app-button label="{{ page }}" (clicked)="goToPage(page)" class="btn-primary" />
+            <app-button
+                label="{{ page }}"
+                (clicked)="goToPage(page)"
+                class="btn-primary"
+            />
         </li>
     }
 </ul>

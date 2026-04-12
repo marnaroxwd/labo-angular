@@ -42,29 +42,29 @@ export class TournamentDetailsPage {
         });
     }
     async onRefresh() {
-    try {
-        
-        const detailsData = await this._tournamentService.details(this.tournamentId);
-        this.details.set(detailsData);
+        try {
+            const detailsData = await this._tournamentService.details(
+                this.tournamentId,
+            );
+            this.details.set(detailsData);
 
-        
-        const matchesData = await this._tournamentService.matches(this.tournamentId);
-        this.matches.set(matchesData);
+            const matchesData = await this._tournamentService.matches(
+                this.tournamentId,
+            );
+            this.matches.set(matchesData);
 
-       
-        this.score.set(
-            await this._tournamentService.score(this.tournamentId),
-        );
+            this.score.set(
+                await this._tournamentService.score(this.tournamentId),
+            );
 
-        this.maxRounds.set(
-            await this._tournamentService.maxRounds(this.tournamentId),
-        );
-        
-    } catch (err) {
+            this.maxRounds.set(
+                await this._tournamentService.maxRounds(this.tournamentId),
+            );
+        } catch (err) {
             const e = err as Error;
             console.log(e);
         }
-}
+    }
 
     async onNextRoundBtn() {
         await this._tournamentService.nextRound(this.tournamentId);
@@ -80,7 +80,7 @@ export class TournamentDetailsPage {
         await this.onRefresh();
     }
     async onRegister(id: number) {
-         this.tournamentId = id.toString();
+        this.tournamentId = id.toString();
         await this._tournamentService.register(this.tournamentId);
         await this.onRefresh();
     }

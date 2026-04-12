@@ -13,19 +13,11 @@
     <div>
         <label for="nickname">Nom d'utilisateur :</label>
         <input type="text" id="nickname" formControlName="nickname" />
-
-        @if (nickname.touched && nickname.invalid) {
-            @if (nickname.getError('required')) {
-                <p>Le nom d'utilisateur est obligatoire</p>
-            }
-            @if (nickname.getError('minlength')) {
-                <p>Le nom d'utilisateur doit contenir au moins 3 caractères</p>
-            }
-            @if (nickname.getError('maxlength')) {
-                <p>
-                    Le nom d'utilisateur doit contenir au maximum 16 caractères
-                </p>
-            }
+        <app-forms-error-display
+            [control]="nickname"
+            name="nom d'utilisateur"
+        ></app-forms-error-display>
+        @if (nickname.touched && nickname.invalid) { 
             @if (nickname.getError('pattern')) {
                 <p>
                     Le nom d'utilisateur ne peut contenir que des lettres,
@@ -41,7 +33,7 @@
         <input type="password" id="password" formControlName="password" />
         <app-forms-error-display
             [control]="password"
-            name="password"
+            name="mot de passe"
         ></app-forms-error-display>
     </div>
 

@@ -4,14 +4,14 @@ import { Links } from "../../../../shared/components/links/links";
 import { TournamentService } from '@core/services/tournament.service';
 import { PaginatedResponse } from '@core/models/api-response.interface';
 import { Tournament } from '@core/models/tournament.interface';
-import { Table } from "../../../../shared/components/tournament/table/table";
 import { TableColumn } from '../../../../shared/components/tournament/table/models/table.interface';
 import { DeleteModal } from "../../../../shared/components/tournament/delete-modal/delete-modal";
+import { Table } from '../../../../shared/components/tournament/table/table';
 
 @Component({
     selector: 'app-dashboard-page',
     standalone: true,
-    imports: [RouterLink, Links, Table, DeleteModal],
+    imports: [ Links, Table, DeleteModal],
     templateUrl: './dashboard-page.html',
     styleUrl: './dashboard-page.css',
 })
@@ -33,7 +33,7 @@ export class DashboardPage implements OnInit {
   });
 
   columns: TableColumn[] = [
-    { key: "id", label: "Id" }, { key: "name", label: "Nom" },
+    { key: "id", label: "Id" }, { key: "name", label: "Nom", isLink: true },
     { key: 'location', label: 'Lieu' }, { key: 'playerRange', label: 'Joueurs' },
     { key: 'eloRange', label: 'Elo' }, { key: 'status', label: 'Status' }
   ];

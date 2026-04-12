@@ -1,4 +1,4 @@
-<div class="modal-overlay" (click)="onCancel">
+<div class="modal-overlay" (click)="onCancel.emit()">
   <div class="delete-card" (click)="$event.stopPropagation()">
     <div class="delete-card__icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="oklch(0.38 0.1523 18.62)" stroke-width="2">
@@ -18,7 +18,7 @@
 
 
     <div class="delete-card__actions">
-      <app-button class="btn-border" (clicked)="cancel()" label="Annuler" />
+      <app-button class="btn-outlined" (clicked)="cancel()" label="Annuler" />
       <app-button class="btn-primary" (clicked)="confirm()" label="Supprimer" />
     </div>
   </div>

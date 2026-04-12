@@ -18,7 +18,7 @@ export const errorsInterceptor: HttpInterceptorFn = (req, next) => {
                         router.navigate(['/', 'auth', 'login']);
                         return throwError(() => null);
                     case 500:
-                        router.navigate(['/']);
+                        router.navigate(['/', 'error-500']);
                         return throwError(() => null);
                 }
             }

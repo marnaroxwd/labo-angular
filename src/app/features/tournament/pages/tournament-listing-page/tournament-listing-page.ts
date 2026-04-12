@@ -21,6 +21,7 @@ export class TournamentListingPage {
     tournamentSearch = '';
     tournamentStatus = "";
     tournamentCategory = "";
+    isWoman = false;
 
     pages = computed(() => {
         const response = this.tournaments();
@@ -36,6 +37,7 @@ export class TournamentListingPage {
                 this.tournamentSearch = params['tournamentName'] || '';
                 this.tournamentStatus = params['status'] || '';
                  this.tournamentCategory = params['category'] || '';
+                 this.isWoman = params['isWoman'] || false;
                 const offset = Number(params['offset'] ?? 0);
 
                 try {
@@ -43,6 +45,7 @@ export class TournamentListingPage {
                         name: this.tournamentSearch,
                         status: this.tournamentStatus,
                         category: this.tournamentCategory,
+                        isWoman: this.isWoman,
                         offset: offset,
                     });
                     this.tournaments.set(response);
@@ -60,6 +63,20 @@ onClickSearch() {
                 tournamentName: this.tournamentSearch || null, // null retire le param de l'URL s'il est vide
                 status: this.tournamentStatus || null,
                 category: this.tournamentCategory || null,
+                isWoman: this.isWoman || null,
+                offset: 0 
+            },
+            queryParamsHandling: 'merge', // Garde les autres paramètres si nécessaire
+        });
+    }
+    onResetFilter(){
+                this._router.navigate([], { // [] ou ['/'] selon ta route
+            relativeTo: this._activatedRoute,
+            queryParams: {
+                tournamentName: null, 
+                status:  null,
+                category: null,
+                isWoman: null,
                 offset: 0 
             },
             queryParamsHandling: 'merge', // Garde les autres paramètres si nécessaire

@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
 import { Button } from '../../button/button';
 import { TableColumn } from './models/table.interface';
+import { Links } from "../../links/links";
 
 @Component({
     selector: 'app-table',
-    imports: [Button],
+    imports: [Button, Links],
     templateUrl: './table.html',
     styleUrl: './table.css',
 })

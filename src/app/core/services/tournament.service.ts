@@ -36,6 +36,7 @@ export class TournamentService {
         name?: string;
         status?: string;
         category?: string;
+        isWoman?: boolean;
         offset?: number;
     }): Promise<PaginatedResponse<Tournament>> {
         let params = new HttpParams()
@@ -43,6 +44,9 @@ export class TournamentService {
             .set('offset', filters?.offset ?? 0);
         if (filters?.name) {
             params = params.set('name', filters.name);
+        }
+        if (filters?.isWoman !== undefined ) {
+            params = params.set('isWoman', filters.isWoman);
         }
         if (filters?.status) {
             params = params.set('status', filters.status);
@@ -57,13 +61,10 @@ export class TournamentService {
                 { params },
             ),
         );
-        console.dir(response);
         return response;
     }
     async create(tournamentData: CreateTournament): Promise<void> {
         await firstValueFrom(
-            //FirstValue from tranforme un observable en promesse
-
             this._httpClient.post(this._apiUrl + 'tournament', tournamentData),
         );
     }
@@ -74,7 +75,6 @@ export class TournamentService {
             ),
         );
 
-        console.log(response.data);
         return response.data;
     }
     async maxRounds(id: string): Promise<MaxRounds> {
@@ -106,7 +106,7 @@ export class TournamentService {
     }
 
     async nextRound(id: string): Promise<void> {
-        const response = await firstValueFrom(
+        await firstValueFrom(
             this._httpClient.patch(
                 this._apiUrl + 'tournament/' + id + '/next-round',
                 {},

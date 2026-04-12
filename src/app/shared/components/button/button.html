@@ -1,3 +1,13 @@
-<button (click)="onAction()" class="btn {{ extraClasses() }}">
-  {{ label() }}
+<button 
+    (click)="onAction()" 
+    [class]="'btn ' + extraClasses()" 
+    [type]="type()" 
+    [disabled]="disabled()"
+    [attr.aria-label]="icon() ? label() : null"
+>
+    @if (icon()) {
+        <img [src]="icon()" alt="" aria-hidden="true" class="btn__icon" />
+    } @else {
+        {{ label() }}
+    }
 </button>

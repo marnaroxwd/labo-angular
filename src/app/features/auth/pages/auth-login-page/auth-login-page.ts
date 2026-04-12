@@ -7,10 +7,11 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '@core/services/auth.service';
+import { Button } from "../../../../shared/components/button/button";
 
 @Component({
     selector: 'app-auth-login-page',
-    imports: [ReactiveFormsModule, RouterLink],
+    imports: [ReactiveFormsModule, RouterLink, Button],
     templateUrl: './auth-login-page.html',
     styleUrl: './auth-login-page.css',
 })
@@ -30,6 +31,7 @@ export class AuthLoginPage {
     async onSubmit() {
         this.formLogin.markAllAsTouched();
         if (this.formLogin.valid) {
+            // loading true
             try {
                 console.log(this.formLogin.value);
                 await this._authService
@@ -39,7 +41,9 @@ export class AuthLoginPage {
                     )
                     .then(() => {
                         this._router.navigate(['/']);
-                    });
+                    }).catch().finally(() =>{
+                        // loading false
+                    })
             } catch (err) {
                 console.warn('auth login', err);
             }
