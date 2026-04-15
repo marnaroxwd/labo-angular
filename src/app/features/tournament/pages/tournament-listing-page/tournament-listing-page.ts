@@ -6,10 +6,11 @@ import { TournamentCard } from '../../../../shared/components/tournament/cards/t
 import { FormsModule } from '@angular/forms';
 import { PaginatedResponse } from '@core/models/api-response.interface';
 import { Button } from '../../../../shared/components/button/button';
+import { Checkbox } from "@shared/components/checkbox/checkbox";
 
 @Component({
     selector: 'app-tournament-listing-page',
-    imports: [TournamentCard, FormsModule, Button],
+    imports: [TournamentCard, FormsModule, Button, Checkbox],
     templateUrl: './tournament-listing-page.html',
     styleUrl: './tournament-listing-page.css',
 })

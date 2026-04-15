@@ -1,4 +1,3 @@
-/* Le conteneur */
 .switch {
   position: relative;
   display: inline-block;
@@ -6,41 +5,39 @@
   height: 26px;
 }
 
+/* On cache l'input mais on le garde cliquable */
 .switch input {
+  position: absolute;
   opacity: 0;
-  width: 0;
-  height: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* L'input est au-dessus pour capter le clic */
+  cursor: pointer;
 }
-
 
 .slider {
   position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--black-color); 
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: oklch(0.2638 0.0024 247.92);
   transition: .4s cubic-bezier(0.36, 0, 0.66, -0.56);
-
+  z-index: 1; /* Le slider est en dessous */
 }
-
 
 .slider:before {
-  position: absolute;
   content: "";
-  height: 19px;
+  position: absolute;
+  height: 18px;
   width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: oklch(0.975 0.012 85);
+  left: 4px;
+  top: 4px;
+  background-color: white;
   transition: .4s cubic-bezier(0.36, 0, 0.66, -0.56);
 }
 
+/* LE SÉLECTEUR MAGIQUE */
 input:checked + .slider {
-  background-color: var(--primary-color); 
+  background-color: #7a1b28;
 }
-
 
 input:checked + .slider:before {
   transform: translateX(24px);

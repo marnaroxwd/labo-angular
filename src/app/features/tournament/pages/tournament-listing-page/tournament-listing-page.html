@@ -25,20 +25,14 @@
     <div class="filter__group">
         <label for="category">CATÉGORIE</label>
         <select id="category" [(ngModel)]="tournamentCategory">
-            <option>Toutes catégories</option>
             <option value="Junior">Junior</option>
             <option value="Senior">Senior</option>
             <option value="Veteran">Veteran</option>
         </select>
     </div>
-    <div class="filter__group">
-        <input
-            type="checkbox"
-            name="Tournoi féminin"
-            id="isWoman"
-            [(ngModel)]="isWoman"
-        />
-    </div>
+<div class="filter__group filter__group--checkbox">
+    <app-checkbox label="Tournoi féminin" id="isWoman" [(checked)]="isWoman" />
+</div>
 
     <div class="filter__actions">
         <app-button

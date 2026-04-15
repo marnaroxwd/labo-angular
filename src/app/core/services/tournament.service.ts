@@ -38,6 +38,7 @@ export class TournamentService {
         category?: string;
         isWoman?: boolean;
         offset?: number;
+        fitElo?: number;
     }): Promise<PaginatedResponse<Tournament>> {
         let params = new HttpParams()
             .set('limit', 20)
@@ -47,6 +48,9 @@ export class TournamentService {
         }
         if (filters?.isWoman !== undefined ) {
             params = params.set('isWoman', filters.isWoman);
+        }
+                if (filters?.fitElo !== undefined ) {
+            params = params.set('fitElo', filters.fitElo);
         }
         if (filters?.status) {
             params = params.set('status', filters.status);
@@ -61,6 +65,7 @@ export class TournamentService {
                 { params },
             ),
         );
+        console.log(response)
         return response;
     }
     async create(tournamentData: CreateTournament): Promise<void> {
