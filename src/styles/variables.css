@@ -3,7 +3,8 @@
     --secondary-color: oklch(0.35 0.07 240);
 
     --black-color: oklch(0.2638 0.0024 247.92);
-    --neutral-color: oklch(0.9702 0 0);
+    --white-color: oklch(0.997 0 0);
+    --neutral-color: oklch(0.9846 0.0017 247.84);
     --disabled-color: oklch(0.45 0.012 240);
     --finished-color: oklch(0.4 0.05 160); 
 

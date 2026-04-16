@@ -23,7 +23,6 @@
             <div class="field">
                 <div class="label-row">
                     <label class="label" for="password">Mot de passe</label>
-                    <a class="forgot" href="#">Mot de passe oublié ?</a>
                 </div>
                 <input
                     class="input"
@@ -33,14 +32,21 @@
                 />
             </div>
 
-            
-            <button class="btn" type="submit" [disabled]="formLogin.invalid">
-                Se connecter <span class="arrow">›</span>
-            </button>
+            <app-button
+                extraClasses="btn-primary form-btn"
+                label="Se connecter ›"
+                type="submit"
+                disabled="formLogin.invalid"
+            ></app-button>
         </form>
 
         <p class="register">
-            Pas encore de compte ? <a routerLink="/auth/register">S'inscrire</a>
+            Pas encore de compte ?
+            <app-links
+                extraClasses="register"
+                label="S'inscrire"
+                link="/auth/register"
+            ></app-links>
         </p>
     </div>
 </div>

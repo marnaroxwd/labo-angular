@@ -12,10 +12,12 @@ import { UsersData } from '@core/models/users.interface';
 import { AuthService } from '@core/services/auth.service';
 import { FormsErrorDisplay } from '../../../../shared/components/forms-error-display/forms-error-display';
 import { usernameValidator } from '@core/validators/username.validator';
+import { Links } from "@shared/components/links/links";
+import { Button } from "@shared/components/button/button";
 
 @Component({
     selector: 'app-auth-register-page',
-    imports: [ReactiveFormsModule, FormsErrorDisplay],
+    imports: [ReactiveFormsModule, FormsErrorDisplay, Links, Button],
     templateUrl: './auth-register-page.html',
     styleUrl: './auth-register-page.css',
 })

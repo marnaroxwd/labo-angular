@@ -1,77 +1,72 @@
-<form [formGroup]="formRegister" (ngSubmit)="onSubmitRegister()">
-    <!-- EMAIL -->
-    <div>
-        <label for="email">Email :</label>
-        <input type="email" id="email" formControlName="email" />
-        <app-forms-error-display
-            [control]="email"
-            name="email"
-        ></app-forms-error-display>
+<div class="page">
+    <div class="logo">
+        <h2 class="logo-title">Checkmate</h2>
+        <span class="logo-separator"></span>
     </div>
 
-    <!-- NICKNAME -->
-    <div>
-        <label for="nickname">Nom d'utilisateur :</label>
-        <input type="text" id="nickname" formControlName="nickname" />
-        <app-forms-error-display
-            [control]="nickname"
-            name="nom d'utilisateur"
-        ></app-forms-error-display>
-        @if (nickname.touched && nickname.invalid) { 
-            @if (nickname.getError('pattern')) {
-                <p>
-                    Le nom d'utilisateur ne peut contenir que des lettres,
-                    chiffres, - et _
-                </p>
-            }
-        }
-    </div>
+    <div class="card">
+        <h1 class="title">Inscription</h1>
+        <p class="subtitle">Créez votre profil et commencez l'ascension.</p>
 
-    <!-- PASSWORD -->
-    <div>
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" formControlName="password" />
-        <app-forms-error-display
-            [control]="password"
-            name="mot de passe"
-        ></app-forms-error-display>
-    </div>
+        <form [formGroup]="formRegister" (ngSubmit)="onSubmitRegister()">
+            
+            <div class="field">
+                <label class="label" for="email">Email</label>
+                <input class="input" type="email" id="email" formControlName="email" placeholder="exemple@email.com" />
+                <app-forms-error-display [control]="email" name="email"></app-forms-error-display>
+            </div>
 
-    <!-- GENDER -->
-    <div>
-        <label for="gender">Genre :</label>
-        <select id="gender" formControlName="gender">
-            <option value="homme">Homme</option>
-            <option value="femme">Femme</option>
-            <option value="autre">Autre</option>
-        </select>
-        <app-forms-error-display
-            [control]="gender"
-            name="genre"
-        ></app-forms-error-display>
-    </div>
+            <div class="field">
+                <label class="label" for="nickname">Nom d'utilisateur</label>
+                <input class="input" type="text" id="nickname" formControlName="nickname" placeholder="Votre pseudo" />
+                <app-forms-error-display [control]="nickname" name="nom d'utilisateur"></app-forms-error-display>
+                @if (nickname.touched && nickname.invalid && nickname.getError('pattern')) { 
+                    <p class="field-info-error">Lettres, chiffres, - et _ uniquement.</p>
+                }
+            </div>
 
-    <!-- BIRTHDATE -->
-    <div>
-        <label for="birthdate">Date de naissance :</label>
-        <input type="date" id="birthdate" formControlName="birthDate" />
-        <app-forms-error-display
-            [control]="birthDate"
-            name="date de naissance"
-        ></app-forms-error-display>
-    </div>
+            <div class="field">
+                <label class="label" for="password">Mot de passe</label>
+                <input class="input" type="password" id="password" formControlName="password" />
+                <app-forms-error-display [control]="password" name="mot de passe"></app-forms-error-display>
+            </div>
 
-    <!-- ELO -->
-    <div>
-        <label for="elo">Elo :</label>
-        <input type="number" id="elo" formControlName="elo" min="0" step="1" />
-        <app-forms-error-display
-            [control]="elo"
-            name="elo"
-        ></app-forms-error-display>
-    </div>
+            <div class="field-row">
+                <div class="field">
+                    <label class="label" for="gender">Genre</label>
+                    <select class="input select-input" id="gender" formControlName="gender">
+                        <option value="homme">Homme</option>
+                        <option value="femme">Femme</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="label" for="birthdate">Date de naissance</label>
+                    <input class="input" type="date" id="birthdate" formControlName="birthDate" />
+                </div>
+            </div>
 
-    <button class="btn" [disabled]="formRegister.invalid" type="submit">
-        Submit
-    </button>
-</form>
+            <div class="field">
+                <label class="label" for="elo">Classement Elo</label>
+                <input class="input" type="number" id="elo" formControlName="elo" min="0" step="1" placeholder="Ex: 1200" />
+                <app-forms-error-display [control]="elo" name="elo"></app-forms-error-display>
+            </div>
+
+            <app-button
+                extraClasses="btn-primary form-btn"
+                label="Créer mon compte ›"
+                type="submit"
+                disabled="formRegister.invalid"
+            ></app-button>
+        </form>
+
+        <p class="register">
+            Déjà membre ? 
+            <app-links
+                extraClasses="register"
+                label="Se connecter"
+                link="/auth/login"
+            ></app-links>
+        </p>
+    </div>
+</div>
