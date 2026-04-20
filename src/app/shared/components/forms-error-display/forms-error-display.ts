@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-forms-error-display',
@@ -8,6 +8,6 @@ import { FormControl } from '@angular/forms';
     styleUrl: './forms-error-display.css',
 })
 export class FormsErrorDisplay {
-    control = input.required<FormControl<unknown | null>>();
+    control = input.required<AbstractControl>();
     name = input.required<string>();
 }

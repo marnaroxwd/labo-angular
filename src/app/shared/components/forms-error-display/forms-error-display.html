@@ -1,61 +1,61 @@
 @if (control().touched && control().invalid) {
-    @if (control().getError('required')) {
-        <p>Le champ {{ name() }} est obligatoire</p>
-    }
+    <div class="error-container">
+        @if (control().hasError('required')) {
+            <p class="field-error">Le champ {{ name() }} est obligatoire.</p>
+        }
 
-    @if (control().getError('email')) {
-        <p>Le champ {{ name() }} doit être une adresse email valide</p>
-    }
+        @if (control().hasError('email')) {
+            <p class="field-error">L'adresse email n'est pas valide.</p>
+        }
 
-    @if (control().getError('minlength')) {
-        <p>
-            Le champ {{ name() }} doit contenir au moins
-            {{ control().getError('minlength').requiredLength }} caractères
-        </p>
-    }
+        @if (control().hasError('minlength')) {
+            <p class="field-error">
+                Le champ {{ name() }} doit contenir au moins
+                {{ control().getError('minlength').requiredLength }} caractères.
+            </p>
+        }
 
-    @if (control().getError('maxlength')) {
-        <p>
-            Le champ {{ name() }} doit contenir au maximum
-            {{ control().getError('maxlength').requiredLength }} caractères
-        </p>
-    }
+        @if (control().hasError('maxlength')) {
+            <p class="field-error">
+                Le champ {{ name() }} doit contenir au maximum
+                {{ control().getError('maxlength').requiredLength }} caractères.
+            </p>
+        }
 
-    @if (control().getError('min')) {
-        <p>
-            Le champ {{ name() }} doit être au moins égal à
-            {{ control().getError('min').min }}
-        </p>
-    }
+        @if (control().hasError('min')) {
+            <p class="field-error">
+                La valeur pour {{ name() }} doit être au moins {{ control().getError('min').min }}.
+            </p>
+        }
 
-    @if (control().getError('max')) {
-        <p>
-            Le champ {{ name() }} doit être au maximum égal à
-            {{ control().getError('max').max }}
-        </p>
-    }
+        @if (control().hasError('max')) {
+            <p class="field-error">
+                La valeur pour {{ name() }} ne peut pas dépasser {{ control().getError('max').max }}.
+            </p>
+        }
 
-    @if (control().getError('notInteger')) {
-        <p>Le champ {{ name() }} doit être un nombre entier</p>
-    }
+        @if (control().hasError('pattern')) {
+            <p class="field-error">Le format du champ {{ name() }} est incorrect.</p>
+        }
 
-    @if (control().getError('lowercase')) {
-        <p>Le champ {{ name() }} doit contenir une lettre minuscule</p>
-    }
+        @if (control().hasError('notInteger')) {
+            <p class="field-error">Le champ {{ name() }} doit être un nombre entier.</p>
+        }
 
-    @if (control().getError('uppercase')) {
-        <p>Le champ {{ name() }} doit contenir une lettre majuscule</p>
-    }
+        @if (control().hasError('lowercase')) {
+            <p class="field-error">Une lettre minuscule est requise.</p>
+        }
 
-    @if (control().getError('number')) {
-        <p>Le champ {{ name() }} doit contenir un chiffre</p>
-    }
+        @if (control().hasError('uppercase')) {
+            <p class="field-error">Une lettre majuscule est requise.</p>
+        }
 
-    @if (control().getError('specialChar')) {
-        <p>Le champ {{ name() }} doit contenir un caractère spécial</p>
-    }
+        @if (control().hasError('number')) {
+            <p class="field-error">Un chiffre est requis.</p>
+        }
 
-    @if (control().getError('pattern')) {
-        <p>Le champ {{ name() }} contient des caractères non autorisés</p>
-    }
+        @if (control().hasError('specialChar')) {
+            <p class="field-error">Un caractère spécial est requis.</p>
+        }
+    </div>
 }

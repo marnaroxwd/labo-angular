@@ -1,0 +1,18 @@
+.error-container {
+    display: flex; /* Aligne tout sur une ligne */
+    flex-wrap: wrap; /* Permet de passer à la ligne proprement si c'est trop long */
+    gap: 4px; /* Petit espace entre les mots */
+    margin-top: 4px;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+}
+
+/* On ajoute une virgule après chaque élément SAUF le dernier */
+.error-text:not(:last-child)::after {
+    content: ",";
+}
+
+/* Pour faire propre : mettre une majuscule seulement au début de la ligne */
+.error-container::first-letter {
+    text-transform: uppercase;
+}

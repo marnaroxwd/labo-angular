@@ -10,7 +10,8 @@ export class Button {
     label = input('');
     extraClasses = input('');
     icon = input<string | null>(null);
-    disabled= input('')
+
+disabled = input<boolean>(false);
     type = input('')
     clicked = output<void>();
     onAction(): void {

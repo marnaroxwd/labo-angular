@@ -9,10 +9,10 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '@core/services/auth.service';
 import { Button } from "../../../../shared/components/button/button";
 import { Links } from "@shared/components/links/links";
+import { FormsErrorDisplay } from "@shared/components/forms-error-display/forms-error-display";
 
 @Component({
-    selector: 'app-auth-login-page',
-    imports: [ReactiveFormsModule, RouterLink, Button, Links],
+    imports: [ReactiveFormsModule, Button, Links, FormsErrorDisplay],
     templateUrl: './auth-login-page.html',
     styleUrl: './auth-login-page.css',
 })

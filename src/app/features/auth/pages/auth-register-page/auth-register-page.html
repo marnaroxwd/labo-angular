@@ -56,8 +56,8 @@
                 extraClasses="btn-primary form-btn"
                 label="Créer mon compte ›"
                 type="submit"
-                disabled="formRegister.invalid"
-            ></app-button>
+                [disabled]="formRegister.invalid"
+            />
         </form>
 
         <p class="register">

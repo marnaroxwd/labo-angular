@@ -8,37 +8,38 @@
         <h1 class="title">Connexion</h1>
         <p class="subtitle">Rejoignez l'élite du jeu d'échecs.</p>
 
-        <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
-            <div class="field">
-                <label class="label" for="identifier">Votre indentifiant</label>
-                <input
-                    class="input"
-                    type="identifier"
-                    id="identifier"
-                    formControlName="identifier"
-                    placeholder="Pseudo ou exemple@email.com"
-                />
-            </div>
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <div class="field">
+        <label class="label" for="identifier">Votre identifiant</label>
+        <input
+            class="input"
+            type="text" 
+            id="identifier"
+            formControlName="identifier"
+            placeholder="Pseudo ou exemple@email.com"
+        />
+        <app-forms-error-display [control]="identifier" name="identifiant"/>
+    </div>
 
-            <div class="field">
-                <div class="label-row">
-                    <label class="label" for="password">Mot de passe</label>
-                </div>
-                <input
-                    class="input"
-                    type="password"
-                    id="password"
-                    formControlName="password"
-                />
-            </div>
+    <div class="field">
+        <div class="label-row">
+            <label class="label" for="password">Mot de passe</label>
+        </div>
+        <input
+            class="input"
+            type="password"
+            id="password"
+            formControlName="password"
+        />
+        <app-forms-error-display [control]="password" name="mot de passe"/>
+    </div>
 
-            <app-button
-                extraClasses="btn-primary form-btn"
-                label="Se connecter ›"
-                type="submit"
-                disabled="formLogin.invalid"
-            ></app-button>
-        </form>
+    <app-button
+        extraClasses="btn-primary form-btn"
+        label="Se connecter ›"
+        type="submit"
+        [disabled]="formLogin.invalid" />
+</form>
 
         <p class="register">
             Pas encore de compte ?
