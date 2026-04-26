@@ -67,7 +67,6 @@ export class AuthRegisterPage {
                 elo: this.formRegister.value.elo!,
                 role: UserRole.User,
             };
-            console.log(data);
             this._authService.register(data).then(() => {
                 this._router.navigate(['/', 'auth', 'login']);
             });

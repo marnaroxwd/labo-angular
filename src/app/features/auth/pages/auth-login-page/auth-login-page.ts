@@ -34,7 +34,6 @@ export class AuthLoginPage {
         if (this.formLogin.valid) {
             // loading true
             try {
-                console.log(this.formLogin.value);
                 await this._authService
                     .login(
                         this.formLogin.value.identifier!,

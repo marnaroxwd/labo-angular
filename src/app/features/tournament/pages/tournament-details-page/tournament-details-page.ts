@@ -62,7 +62,6 @@ export class TournamentDetailsPage {
             );
         } catch (err) {
             const e = err as Error;
-            console.log(e);
         }
     }
 

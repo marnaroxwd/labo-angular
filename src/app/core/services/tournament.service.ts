@@ -65,7 +65,6 @@ export class TournamentService {
                 { params },
             ),
         );
-        console.log(response)
         return response;
     }
     async create(tournamentData: CreateTournament): Promise<void> {
@@ -88,7 +87,6 @@ export class TournamentService {
                 this._apiUrl + 'tournament/' + id + '/maxround',
             ),
         );
-        console.log(response.data);
         return response.data;
     }
     async matches(id: string): Promise<Match[]> {
@@ -106,7 +104,6 @@ export class TournamentService {
                 this._apiUrl + 'tournament/' + id + '/scores',
             ),
         );
-        console.log(response.data);
         return response.data;
     }
 
